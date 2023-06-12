@@ -8,6 +8,28 @@ namespace ShadowingHidingPrac
 {
     class Program
     {
+        class Animal
+        {
+            public virtual void Eat() //virtual 키워드는 무조건 오버라이딩에서 사용하는 것은 아니다. 하이딩에서도 사용 가능
+            {
+                Console.WriteLine("냠냠 먹습니다.");
+            }
+        }
+        class Dog : Animal
+        {
+            public void Eat() //하이딩
+            {
+                Console.WriteLine("촵촵 먹습니다.");
+            }
+        }
+        class Cat : Animal
+        {
+            public override void Eat() //오버라이딩
+            {
+                Console.WriteLine("뇸뇸 먹습니다.");
+            }
+        }
+
         class Parent
         {
             public int variable = 273;
@@ -47,6 +69,18 @@ namespace ShadowingHidingPrac
 
             child.Method2();
             p.Method2();
+
+
+            List<Animal> Animals = new List<Animal>()
+            {
+                new Dog(), new Cat(), new Cat(), new Dog(),
+                new Dog(), new Cat(), new Dog(), new Dog(),
+            };
+            foreach(var item in Animals)
+            {
+                item.Eat();
+                // 하이딩한 Dog는 Animal의 Eat()이 출력되고, 오버라이딩한 Cat은 Cat의 Eat()이 출력됨
+            }
         }
     }
 }
