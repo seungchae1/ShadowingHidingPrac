@@ -11,10 +11,18 @@ namespace ShadowingHidingPrac
         class Parent
         {
             public int variable = 273;
+            public void Method()
+            {
+                Console.WriteLine("부모의 메서드");
+            }
         }
         class Child : Parent
         {
             public new string variable = "shadowing"; // (hiding) new 키워드를 안써도 돌아가지만 써주는게 좋음
+            public new void Method()
+            {
+                Console.WriteLine("자식의 메서드");
+            }
         }
         public static int number = 10;
         static void Main(string[] args)
@@ -25,6 +33,9 @@ namespace ShadowingHidingPrac
             Console.WriteLine(child.variable); // shadowing 출력
             Parent p = child;
             Console.WriteLine(p.variable); // 273 출력
+
+            child.Method();
+            p.Method();
         }
     }
 }
