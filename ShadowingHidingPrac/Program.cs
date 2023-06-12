@@ -8,11 +8,23 @@ namespace ShadowingHidingPrac
 {
     class Program
     {
+        class Parent
+        {
+            public int variable = 273;
+        }
+        class Child : Parent
+        {
+            public new string variable = "shadowing"; // (hiding) new 키워드를 안써도 돌아가지만 써주는게 좋음
+        }
         public static int number = 10;
         static void Main(string[] args)
         {
             int number = 20;
             Console.WriteLine(number);
+            Child child = new Child();
+            Console.WriteLine(child.variable); // shadowing 출력
+            Parent p = child;
+            Console.WriteLine(p.variable); // 273 출력
         }
     }
 }
